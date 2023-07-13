@@ -1,0 +1,104 @@
+import time
+answer = ""
+g7_countries = ['Canada', 'France', 'Germany', 'Italy', 'Japan', 'United Kingdom', 'United States']
+selected_country_index = 0
+
+#environmental statistics taken from https://data.oecd.org/ from Data Tables and Graphs Air Pollution Exposure,Municipal Waste, Forest Resources and Electricity Generation
+environmental_statistics = {
+'Canada': {
+'air_pollution_exposure_µg/m3': 7.09,
+'waste_generated_per_year_tons': 72000000,
+'forest_cover_%': '38.2',
+'number_of_fossil_fuel_plants': 26,
+'ecological_footprint_gha': 7.4
+},
+'France': {
+'air_pollution_exposure_µg/m3': 11.36,
+'waste_generated_per_year_tons': 110000000,
+'forest_cover_%': '31.4',
+'number_of_fossil_fuel_plants': 16,
+'ecological_footprint_gha': 4.4
+},
+'Germany': {
+'air_pollution_exposure_µg/m3': 11.93,
+'waste_generated_per_year_tons': 100000000,
+'forest_cover_%': '32.9',
+'number_of_fossil_fuel_plants': 42,
+'ecological_footprint_gha': 3.7
+},
+'Italy': {
+'air_pollution_exposure_µg/m3': 15.85,
+'waste_generated_per_year_tons': 74000000,
+'forest_cover_%': '31.5',
+'number_of_fossil_fuel_plants': 17,
+'ecological_footprint_gha': 2.2
+},
+'Japan': {
+'air_pollution_exposure_µg/m3': 13.65,
+'waste_generated_per_year_tons': 50000000,
+'forest_cover_%': '68.5',
+'number_of_fossil_fuel_plants': 90,
+'ecological_footprint_gha': 3.4
+},
+'United Kingdom': {
+'air_pollution_exposure_µg/m3': 10.02,
+'waste_generated_per_year_tons': 30000000,
+'forest_cover_%': '13',
+'number_of_fossil_fuel_plants': 8,
+'ecological_footprint_gha': 4.4
+},
+'United States': {
+'air_pollution_esposure_µg/m3': 7.68,
+'waste_generated_per_year_tons': 250000000,
+'forest_cover_%': '33.2',
+'number_of_fossil_fuel_plants': 589,
+'ecological_footprint_gha': 8.3
+}
+}
+
+quiz_statistics = []
+
+#G7 information and background from https://www.investopedia.com/terms/g/g7.asp, first paragraph
+def select_country(answer):
+    print("In our world, the Group of 7, also known as the G7 is an intergovernmental organisation that consists of high income countries that make up nearly 30% of the world's global economy.")
+    time.sleep(1)
+    print("It is crucial to understand the significance of these nations in helping drive our world forward in terms of sustainable development and rebuilding our green infrastructure for future generations. \n")
+    answer = input("Do you want to play a game(Y/N): ")
+    if answer == "Y":
+        time.sleep(1)
+        for index, country in enumerate(g7_countries):
+            print(f"{index + 1}. {country}")
+        selected_country_index = int(input("The countries above consist of 7 nations that make up the G7 and are often well known in every household and often makes headline news.\n\nYou will now be taking part in a quiz to know more about one G7 country and the role they play in accelerating global climate change and its horrific impacts.\nEnter the number of the country which you believe you know the most about or which you would like to know more about: ")) - 1
+    return g7_countries[selected_country_index]
+Else:
+print(“Ok, thanks!”)
+    
+    
+
+
+def main():
+    score = []
+    selected_country = select_country()
+    quiz_statistics = environmental_statistics[selected_country]
+    print(f"\nYou have selected {selected_country}.")
+    print("\nLet's take a quiz on different environmental statistics of the country.")
+    for statistic, value in quiz_statistics.items():
+        quiz_question = f"\nWhat is the {statistic} of {selected_country}?: "
+        user_answer = input(quiz_question)
+        if user_answer == str(value):
+            print("Correct!")
+            score.append(1)
+        else:
+            print(f"Incorrect. The {statistic} of {selected_country} is {value}.")
+    print(f"Your final score is {sum(score)}/{len(quiz_statistics)}.")
+    if sum(score) == len(quiz_statistics):
+        print("You are an environmental expert! You already know everything there neeeds to be known about saving the environment.\n An impossible feat indeed!")
+    else:
+        print("\nCongratulations! You have learnt the impact that your chosen country has in accelerating climate change. \nIt's beyond time that nations begin paying their fair share towards moving to renewable energy and becoming more environmentally sustainable. \nMake the change in your house today by trying to waste less, compost your food and try installing solar panels on your roof! ")
+
+if __name__ == "__main__":
+    main()
+
+
+
+
